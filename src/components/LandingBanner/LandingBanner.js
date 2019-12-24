@@ -12,8 +12,6 @@ const LandingBanner = () => {
                     spy={ true }
                     smooth={ true }
                     duration={ 500 }
-                    className="navbar-item"
-                    activeClass="navbar-item-active"
                     >
                     <div className="button button-primary">View Projects</div>
                 </Link>
