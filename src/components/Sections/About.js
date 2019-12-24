@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Element } from 'react-scroll'
-import Me from "../../assets/me.png";
+import Me from "../../assets/me.jpg";
 const About = () => {
     return (
         <Fragment>
