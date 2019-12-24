@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Fragment } from 'react';
 import './App.css';
+import LandingBanner from "./components/LandingBanner/LandingBanner";
+import Navbar from "./components/Navbar";
+import About from './components/Sections/About';
+import Projects from './components/Sections/Projects/Projects';
+import Contact from "./components/Sections/Contact/Contact";
+import Footer from "./components/Footer";
+import { ApolloProvider } from '@apollo/react-hooks';
+import client from "./utils/client";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  console.log("Hi fellow dev! I see your checking on my page. If you want to know how I created this, feel free to contact me ;)\nMy e-mail is located below on my website");
+  return(
+    <ApolloProvider client={client}>
+      <Fragment>
+        <Navbar />
+        <LandingBanner />
+        <About />
+        <Projects />
+        <Contact />
+        <Footer />
+      </Fragment>
+    </ApolloProvider>
+  )
 }
 
 export default App;
