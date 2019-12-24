@@ -3,7 +3,7 @@ import ApolloClient from 'apollo-boost';
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
   request: (operation) => {
-    const token = 'f0c4caf53351aae1efcbac631de86d2ef4a3830a';
+    const token = '6adfbc8d2998089022d39d300b896d3d823760dd';
     operation.setContext({
       headers: {
         Authorization: `Bearer ${token}`
