@@ -1,46 +1,30 @@
-import React, { Fragment } from "react";
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import React, { Fragment, useContext, useEffect } from "react";
 import ProjectItem from "./ProjectItem";
 import { Element } from 'react-scroll'
-
-const REPOS = gql`
-query{
-    repositoryOwner(login: "dertrockx") {
-    ... on User {
-      pinnedRepositories(first:6) {
-        edges {
-          node {
-            name,
-            url,
-            description
-          }
-        }
-      }
-    }
-  }
-}
-`
-
-
+import RepoContext from "../../../context/repos/repoContext";
 
 const Projects = () => {
-    const { loading, error, data } = useQuery(REPOS);
-    let projects = <div>...</div>
-    if(!loading && !error){
-        const { edges } = data.repositoryOwner.pinnedRepositories;
-        projects = (
-            <Fragment>
-                { edges.map( ({ node }, key) => (
-                   <ProjectItem 
-                    key={ key }
-                    name={ node.name }
-                    description={ node.description }
-                    url={ node.url }
-                    />
-                )) }
-            </Fragment>
-        )
+    const repoContext = useContext(RepoContext);
+    const { repos, getRepos } = repoContext;
+    useEffect( () => {
+      getRepos()
+    }, []);
+    let projects = (
+      <h3>Fetching...</h3>
+    );
+    if(repos.length > 0){
+      projects = (
+          <Fragment>
+              { repos.map( ({ node }, key) => (
+                  <ProjectItem 
+                  key={ key }
+                  name={ node.name }
+                  description={ node.description }
+                  url={ node.url }
+                  />
+              )) }
+          </Fragment>
+      )
     }
     return (
       <Fragment>
